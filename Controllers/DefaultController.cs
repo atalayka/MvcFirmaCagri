@@ -50,6 +50,19 @@ namespace MvcFirmaCagri.Controllers
             var cagri = db.TblCagriDetay.Where(x=>x.Cagri==id).ToList();
             return View(cagri);
         }
+        public ActionResult CagriGetir(int id)
+        {
+            var cagri = db.TblCagrilar.Find(id);
+            return View("CagriGetir", cagri);
+        }
+        public ActionResult CagriDuzenle(TblCagrilar p)
+        {
+            var cagri = db.TblCagrilar.Find(p.ID);
+            cagri.Konu = p.Konu;
+            cagri.Aciklama = p.Aciklama;
+            db.SaveChanges();
+            return RedirectToAction("AktifCagrilar");
+        }
 
     }
 }
