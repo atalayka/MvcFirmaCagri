@@ -23,6 +23,7 @@ namespace MvcFirmaCagri.Models.Entity
         public int ID { get; set; }
         public string Ad { get; set; }
         public string Yetkili { get; set; }
+        public string Sifre { get; set; }
         public string Telefon { get; set; }
         public string Mail { get; set; }
         public string Sektör { get; set; }

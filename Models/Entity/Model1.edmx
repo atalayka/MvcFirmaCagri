@@ -58,6 +58,7 @@
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Ad" Type="nvarchar" MaxLength="30" />
           <Property Name="Yetkili" Type="nvarchar" MaxLength="30" />
+          <Property Name="Sifre" Type="nvarchar" MaxLength="20" />
           <Property Name="Telefon" Type="nvarchar" MaxLength="20" />
           <Property Name="Mail" Type="nvarchar" MaxLength="50" />
           <Property Name="Sektör" Type="nvarchar" MaxLength="30" />
@@ -228,8 +229,8 @@
           <Property Name="Aciklama" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Tarih" Type="DateTime" Precision="0" />
           <Property Name="Durum" Type="Boolean" />
-          <NavigationProperty Name="TblFirmalar" Relationship="Self.FK_TblCagrilar_TblFirmalar" FromRole="TblCagrilar" ToRole="TblFirmalar" />
           <NavigationProperty Name="TblCagriDetay" Relationship="DbIsTakiipModel.FK_TblCagriDetay_TblCagrilar" FromRole="TblCagrilar" ToRole="TblCagriDetay" />
+          <NavigationProperty Name="TblFirmalar" Relationship="DbIsTakiipModel.FK_TblCagrilar_TblFirmalar" FromRole="TblCagrilar" ToRole="TblFirmalar" />
         </EntityType>
         <EntityType Name="TblDepartmanlar">
           <Key>
@@ -238,21 +239,6 @@
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Ad" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TblPersonel" Relationship="Self.FK_TblPersonel_TblDepartmanlar" FromRole="TblDepartmanlar" ToRole="TblPersonel" />
-        </EntityType>
-        <EntityType Name="TblFirmalar">
-          <Key>
-            <PropertyRef Name="ID" />
-          </Key>
-          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Ad" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Yetkili" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Sektör" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="il" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="ilçe" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="TblCagrilar" Relationship="Self.FK_TblCagrilar_TblFirmalar" FromRole="TblFirmalar" ToRole="TblCagrilar" />
         </EntityType>
         <EntityType Name="TblGorevDetaylar">
           <Key>
@@ -295,18 +281,6 @@
           <NavigationProperty Name="TblGorevler" Relationship="Self.FK_TblGorevler_TblPersonel" FromRole="TblPersonel" ToRole="TblGorevler" />
           <NavigationProperty Name="TblGorevler1" Relationship="Self.FK_TblGorevler_TblPersonel1" FromRole="TblPersonel" ToRole="TblGorevler" />
         </EntityType>
-        <Association Name="FK_TblCagrilar_TblFirmalar">
-          <End Role="TblFirmalar" Type="Self.TblFirmalar" Multiplicity="0..1" />
-          <End Role="TblCagrilar" Type="Self.TblCagrilar" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="TblFirmalar">
-              <PropertyRef Name="ID" />
-            </Principal>
-            <Dependent Role="TblCagrilar">
-              <PropertyRef Name="CagriFirma" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_TblPersonel_TblDepartmanlar">
           <End Role="TblDepartmanlar" Type="Self.TblDepartmanlar" Multiplicity="0..1" />
           <End Role="TblPersonel" Type="Self.TblPersonel" Multiplicity="*" />
@@ -359,14 +333,9 @@
           <EntitySet Name="TblAdmin" EntityType="Self.TblAdmin" />
           <EntitySet Name="TblCagrilar" EntityType="Self.TblCagrilar" />
           <EntitySet Name="TblDepartmanlar" EntityType="Self.TblDepartmanlar" />
-          <EntitySet Name="TblFirmalar" EntityType="Self.TblFirmalar" />
           <EntitySet Name="TblGorevDetaylar" EntityType="Self.TblGorevDetaylar" />
           <EntitySet Name="TblGorevler" EntityType="Self.TblGorevler" />
           <EntitySet Name="TblPersonel" EntityType="Self.TblPersonel" />
-          <AssociationSet Name="FK_TblCagrilar_TblFirmalar" Association="Self.FK_TblCagrilar_TblFirmalar">
-            <End Role="TblFirmalar" EntitySet="TblFirmalar" />
-            <End Role="TblCagrilar" EntitySet="TblCagrilar" />
-          </AssociationSet>
           <AssociationSet Name="FK_TblPersonel_TblDepartmanlar" Association="Self.FK_TblPersonel_TblDepartmanlar">
             <End Role="TblDepartmanlar" EntitySet="TblDepartmanlar" />
             <End Role="TblPersonel" EntitySet="TblPersonel" />
@@ -388,6 +357,11 @@
           <AssociationSet Name="FK_TblCagriDetay_TblCagrilar" Association="DbIsTakiipModel.FK_TblCagriDetay_TblCagrilar">
             <End Role="TblCagrilar" EntitySet="TblCagrilar" />
             <End Role="TblCagriDetay" EntitySet="TblCagriDetay" />
+          </AssociationSet>
+          <EntitySet Name="TblFirmalar" EntityType="DbIsTakiipModel.TblFirmalar" />
+          <AssociationSet Name="FK_TblCagrilar_TblFirmalar" Association="DbIsTakiipModel.FK_TblCagrilar_TblFirmalar">
+            <End Role="TblFirmalar" EntitySet="TblFirmalar" />
+            <End Role="TblCagrilar" EntitySet="TblCagrilar" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="sysdiagrams">
@@ -423,6 +397,34 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TblFirmalar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Ad" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Yetkili" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Sifre" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Telefon" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Sektör" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="il" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="ilçe" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TblCagrilar" Relationship="DbIsTakiipModel.FK_TblCagrilar_TblFirmalar" FromRole="TblFirmalar" ToRole="TblCagrilar" />
+        </EntityType>
+        <Association Name="FK_TblCagrilar_TblFirmalar">
+          <End Type="DbIsTakiipModel.TblFirmalar" Role="TblFirmalar" Multiplicity="0..1" />
+          <End Type="DbIsTakiipModel.TblCagrilar" Role="TblCagrilar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TblFirmalar">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TblCagrilar">
+              <PropertyRef Name="CagriFirma" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -455,21 +457,6 @@
               <MappingFragment StoreEntitySet="TblDepartmanlar">
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="Ad" ColumnName="Ad" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="TblFirmalar">
-            <EntityTypeMapping TypeName="DbIsTakiipModel.TblFirmalar">
-              <MappingFragment StoreEntitySet="TblFirmalar">
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Ad" ColumnName="Ad" />
-                <ScalarProperty Name="Yetkili" ColumnName="Yetkili" />
-                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
-                <ScalarProperty Name="Mail" ColumnName="Mail" />
-                <ScalarProperty Name="Sektör" ColumnName="Sektör" />
-                <ScalarProperty Name="il" ColumnName="il" />
-                <ScalarProperty Name="ilçe" ColumnName="ilçe" />
-                <ScalarProperty Name="Adres" ColumnName="Adres" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -528,6 +515,22 @@
                 <ScalarProperty Name="Tarih" ColumnName="Tarih" />
                 <ScalarProperty Name="Aciklama" ColumnName="Aciklama" />
                 <ScalarProperty Name="Cagri" ColumnName="Cagri" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblFirmalar">
+            <EntityTypeMapping TypeName="DbIsTakiipModel.TblFirmalar">
+              <MappingFragment StoreEntitySet="TblFirmalar">
+                <ScalarProperty Name="Adres" ColumnName="Adres" />
+                <ScalarProperty Name="ilçe" ColumnName="ilçe" />
+                <ScalarProperty Name="il" ColumnName="il" />
+                <ScalarProperty Name="Sektör" ColumnName="Sektör" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Telefon" ColumnName="Telefon" />
+                <ScalarProperty Name="Sifre" ColumnName="Sifre" />
+                <ScalarProperty Name="Yetkili" ColumnName="Yetkili" />
+                <ScalarProperty Name="Ad" ColumnName="Ad" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

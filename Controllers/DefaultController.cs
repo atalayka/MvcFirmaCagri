@@ -7,6 +7,9 @@ using MvcFirmaCagri.Models.Entity;
 
 namespace MvcFirmaCagri.Controllers
 {
+
+    [Authorize] //authentication indicator
+
     public class DefaultController : Controller
     {
         // GET: Default
@@ -15,6 +18,7 @@ namespace MvcFirmaCagri.Controllers
             return View();
         }
         DbIsTakiipEntities db = new DbIsTakiipEntities();
+
         public ActionResult AktifCagrilar()
         {
             var cagrilar = db.TblCagrilar.Where(x=>x.Durum == true).ToList();

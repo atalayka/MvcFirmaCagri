@@ -5,21 +5,21 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="667b10abfe8a4df985a91e8af87a8651" Name="Diagram1">
-        <EntityTypeShape EntityType="DbIsTakiipModel.TblAdmin" Width="1.5" PointX="5.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbIsTakiipModel.TblCagrilar" Width="1.5" PointX="3.875" PointY="4.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbIsTakiipModel.TblAdmin" Width="1.5" PointX="7" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DbIsTakiipModel.TblCagrilar" Width="1.5" PointX="2.625" PointY="4.375" IsExpanded="true" />
         <EntityTypeShape EntityType="DbIsTakiipModel.TblDepartmanlar" Width="1.5" PointX="0.75" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="DbIsTakiipModel.TblFirmalar" Width="1.5" PointX="2" PointY="4.625" IsExpanded="true" />
         <EntityTypeShape EntityType="DbIsTakiipModel.TblGorevDetaylar" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="DbIsTakiipModel.TblGorevler" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
         <EntityTypeShape EntityType="DbIsTakiipModel.TblPersonel" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
-        <AssociationConnector Association="DbIsTakiipModel.FK_TblCagrilar_TblFirmalar" ManuallyRouted="false" />
         <AssociationConnector Association="DbIsTakiipModel.FK_TblPersonel_TblDepartmanlar" ManuallyRouted="false" />
         <AssociationConnector Association="DbIsTakiipModel.FK_TblGorevDetaylar_TblGorevler" ManuallyRouted="false" />
         <AssociationConnector Association="DbIsTakiipModel.FK_TblGorevler_TblPersonel" ManuallyRouted="false" />
         <AssociationConnector Association="DbIsTakiipModel.FK_TblGorevler_TblPersonel1" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="DbIsTakiipModel.sysdiagrams" Width="1.5" PointX="0.75" PointY="8.75" />
-        <EntityTypeShape EntityType="DbIsTakiipModel.TblCagriDetay" Width="1.5" PointX="6.5" PointY="8" />
+        <EntityTypeShape EntityType="DbIsTakiipModel.sysdiagrams" Width="1.5" PointX="9" PointY="4.75" />
+        <EntityTypeShape EntityType="DbIsTakiipModel.TblCagriDetay" Width="1.5" PointX="4.625" PointY="4.625" />
         <AssociationConnector Association="DbIsTakiipModel.FK_TblCagriDetay_TblCagrilar" />
+        <EntityTypeShape EntityType="DbIsTakiipModel.TblFirmalar" Width="1.5" PointX="1" PointY="4.125" />
+        <AssociationConnector Association="DbIsTakiipModel.FK_TblCagrilar_TblFirmalar" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

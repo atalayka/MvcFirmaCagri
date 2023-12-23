@@ -27,8 +27,8 @@ namespace MvcFirmaCagri.Models.Entity
         public Nullable<System.DateTime> Tarih { get; set; }
         public Nullable<bool> Durum { get; set; }
     
-        public virtual TblFirmalar TblFirmalar { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblCagriDetay> TblCagriDetay { get; set; }
+        public virtual TblFirmalar TblFirmalar { get; set; }
     }
 }
