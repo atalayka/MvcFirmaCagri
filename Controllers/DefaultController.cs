@@ -21,12 +21,21 @@ namespace MvcFirmaCagri.Controllers
 
         public ActionResult AktifCagrilar()
         {
-            var cagrilar = db.TblCagrilar.Where(x=>x.Durum == true).ToList();
+            var mail = (string)Session["Mail"];
+            ViewBag.m = mail;
+
+            var id = db.TblFirmalar.Where(x => x.Mail == mail).Select(y => y.ID).FirstOrDefault();
+
+            var cagrilar = db.TblCagrilar.Where(x=>x.Durum == true && x.CagriFirma == id).ToList();
+
             return View(cagrilar);
         }
         public ActionResult PasifCagrilar()
         {
-            var cagrilar = db.TblCagrilar.Where(x => x.Durum == false).ToList();
+            var mail = (string)Session["Mail"];
+            var id = db.TblFirmalar.Where(x => x.Mail == mail).Select(y => y.ID).FirstOrDefault();
+
+            var cagrilar = db.TblCagrilar.Where(x => x.Durum == false && x.CagriFirma == id).ToList();
             return View(cagrilar);
         }
 
@@ -40,9 +49,13 @@ namespace MvcFirmaCagri.Controllers
         [HttpPost]
         public ActionResult YeniCagri(TblCagrilar p)
         {
+            var mail = (string)Session["Mail"];
+            var id = db.TblFirmalar.Where(x => x.Mail == mail).Select(y => y.ID).FirstOrDefault();
+
+
             p.Durum = true;
             p.Tarih = DateTime.Today;
-            p.CagriFirma = 4;
+            p.CagriFirma = id;
             db.TblCagrilar.Add(p);
             db.SaveChanges();
             return RedirectToAction("AktifCagrilar");
