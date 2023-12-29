@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.UI.WebControls;
 using MvcFirmaCagri.Models.Entity;
 
 namespace MvcFirmaCagri.Controllers
@@ -26,7 +27,7 @@ namespace MvcFirmaCagri.Controllers
 
             var id = db.TblFirmalar.Where(x => x.Mail == mail).Select(y => y.ID).FirstOrDefault();
 
-            var cagrilar = db.TblCagrilar.Where(x=>x.Durum == true && x.CagriFirma == id).ToList();
+            var cagrilar = db.TblCagrilar.Where(x => x.Durum == true && x.CagriFirma == id).ToList();
 
             return View(cagrilar);
         }
@@ -64,7 +65,7 @@ namespace MvcFirmaCagri.Controllers
 
         public ActionResult CagriDetay(int id)
         {
-            var cagri = db.TblCagriDetay.Where(x=>x.Cagri==id).ToList();
+            var cagri = db.TblCagriDetay.Where(x => x.Cagri == id).ToList();
             return View(cagri);
         }
         public ActionResult CagriGetir(int id)
@@ -81,5 +82,19 @@ namespace MvcFirmaCagri.Controllers
             return RedirectToAction("AktifCagrilar");
         }
 
+        [HttpGet]
+        public ActionResult ProfilDuzenle()
+        {
+
+            var mail = (string)Session["Mail"];
+            var id = db.TblFirmalar.Where(x => x.Mail == mail).Select(y => y.ID).FirstOrDefault();
+
+            var profil = db.TblFirmalar.Where(x => x.ID == id).FirstOrDefault();
+            return View(profil);
+        }
+        public ActionResult AnaSayfa()
+        {
+            return View();
+        }
     }
 }
