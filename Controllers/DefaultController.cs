@@ -111,6 +111,8 @@ namespace MvcFirmaCagri.Controllers
             var yetkili = db.TblFirmalar.Where(x => x.ID == id).Select(y=>y.Yetkili).FirstOrDefault();
             ViewBag.c4 = yetkili;
 
+            var sektor = db.TblFirmalar.Where(x => x.ID == id).Select(y => y.Sektör).FirstOrDefault();
+            ViewBag.c5 = sektor;
 
             return View();
         }
