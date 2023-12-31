@@ -87,6 +87,18 @@
           <Property Name="Durum" Type="bit" />
           <Property Name="Tarih" Type="date" />
         </EntityType>
+        <EntityType Name="TblMesajlar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Gonderen" Type="nvarchar" MaxLength="50" />
+          <Property Name="Alici" Type="nvarchar" MaxLength="50" />
+          <Property Name="Konu" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mesaj" Type="nvarchar(max)" />
+          <Property Name="Tarih" Type="date" />
+          <Property Name="Durum" Type="bit" />
+        </EntityType>
         <EntityType Name="TblPersonel">
           <Key>
             <PropertyRef Name="ID" />
@@ -181,6 +193,7 @@
           <EntitySet Name="TblFirmalar" EntityType="Self.TblFirmalar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblGorevDetaylar" EntityType="Self.TblGorevDetaylar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblGorevler" EntityType="Self.TblGorevler" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TblMesajlar" EntityType="Self.TblMesajlar" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="TblPersonel" EntityType="Self.TblPersonel" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_TblCagriDetay_TblCagrilar" Association="Self.FK_TblCagriDetay_TblCagrilar">
             <End Role="TblCagrilar" EntitySet="TblCagrilar" />
@@ -363,6 +376,7 @@
             <End Role="TblFirmalar" EntitySet="TblFirmalar" />
             <End Role="TblCagrilar" EntitySet="TblCagrilar" />
           </AssociationSet>
+          <EntitySet Name="TblMesajlar" EntityType="DbIsTakiipModel.TblMesajlar" />
         </EntityContainer>
         <EntityType Name="sysdiagrams">
           <Key>
@@ -425,6 +439,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="TblMesajlar">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Gonderen" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Alici" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Konu" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mesaj" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tarih" Type="DateTime" Precision="0" />
+          <Property Name="Durum" Type="Boolean" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -531,6 +557,19 @@
                 <ScalarProperty Name="Sifre" ColumnName="Sifre" />
                 <ScalarProperty Name="Yetkili" ColumnName="Yetkili" />
                 <ScalarProperty Name="Ad" ColumnName="Ad" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TblMesajlar">
+            <EntityTypeMapping TypeName="DbIsTakiipModel.TblMesajlar">
+              <MappingFragment StoreEntitySet="TblMesajlar">
+                <ScalarProperty Name="Durum" ColumnName="Durum" />
+                <ScalarProperty Name="Tarih" ColumnName="Tarih" />
+                <ScalarProperty Name="Mesaj" ColumnName="Mesaj" />
+                <ScalarProperty Name="Konu" ColumnName="Konu" />
+                <ScalarProperty Name="Alici" ColumnName="Alici" />
+                <ScalarProperty Name="Gonderen" ColumnName="Gonderen" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
               </MappingFragment>
             </EntityTypeMapping>

@@ -20,6 +20,7 @@
         <AssociationConnector Association="DbIsTakiipModel.FK_TblCagriDetay_TblCagrilar" />
         <EntityTypeShape EntityType="DbIsTakiipModel.TblFirmalar" Width="1.5" PointX="1" PointY="4.125" />
         <AssociationConnector Association="DbIsTakiipModel.FK_TblCagrilar_TblFirmalar" />
+        <EntityTypeShape EntityType="DbIsTakiipModel.TblMesajlar" Width="1.5" PointX="3.375" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

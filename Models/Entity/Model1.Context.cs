@@ -34,5 +34,6 @@ namespace MvcFirmaCagri.Models.Entity
         public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TblCagriDetay> TblCagriDetay { get; set; }
         public virtual DbSet<TblFirmalar> TblFirmalar { get; set; }
+        public virtual DbSet<TblMesajlar> TblMesajlar { get; set; }
     }
 }

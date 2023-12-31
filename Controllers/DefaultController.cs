@@ -102,13 +102,13 @@ namespace MvcFirmaCagri.Controllers
             ViewBag.c1 = toplamCagri;
 
 
-            var aktifCagri = db.TblCagrilar.Where(x => x.CagriFirma==id && x.Durum == true).Count();
+            var aktifCagri = db.TblCagrilar.Where(x => x.CagriFirma == id && x.Durum == true).Count();
             ViewBag.c2 = aktifCagri;
 
             var pasifCagri = db.TblCagrilar.Where(x => x.CagriFirma == id && x.Durum == false).Count();
             ViewBag.c3 = pasifCagri;
 
-            var yetkili = db.TblFirmalar.Where(x => x.ID == id).Select(y=>y.Yetkili).FirstOrDefault();
+            var yetkili = db.TblFirmalar.Where(x => x.ID == id).Select(y => y.Yetkili).FirstOrDefault();
             ViewBag.c4 = yetkili;
 
             var sektor = db.TblFirmalar.Where(x => x.ID == id).Select(y => y.Sektör).FirstOrDefault();
@@ -116,5 +116,17 @@ namespace MvcFirmaCagri.Controllers
 
             return View();
         }
+
+        public PartialViewResult Partial1()
+        {
+            //true is unreaded message; false is readed message
+            var mail = (string)Session["Mail"];
+            var mesajlar = db.TblMesajlar.Where(x => x.Alici == mail && x.Durum == true).ToList();
+
+            var mesajSayisi = db.TblMesajlar.Where(x => x.Alici == mail && x.Durum == true).Count();
+            ViewBag.m1 = mesajSayisi;
+            return PartialView(mesajlar);
+        }
+
     }
 }
