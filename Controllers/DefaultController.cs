@@ -146,5 +146,14 @@ namespace MvcFirmaCagri.Controllers
             Session.Abandon(); ;
             return RedirectToAction("Index", "Login");
         }
+
+        public ActionResult GelenMesaj()
+        {
+            return View();
+        }
+        public ActionResult GonderilenMesaj()
+        {
+            return View();
+        }
     }
 }
