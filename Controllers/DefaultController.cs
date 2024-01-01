@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using System.Web.UI.WebControls;
 using MvcFirmaCagri.Models.Entity;
 
@@ -134,8 +135,16 @@ namespace MvcFirmaCagri.Controllers
             var mail = (string)Session["Mail"];
             var id = db.TblFirmalar.Where(x => x.Mail == mail).Select(y => y.ID).FirstOrDefault();
 
-            var cagrilar = db.TblCagrilar.Where(x => x.CagriFirma == id).ToList();
+            var cagrilar = db.TblCagrilar.Where(x => x.CagriFirma == id && x.Durum == true).ToList();
+            var cagrilarAktif = db.TblCagrilar.Where(x => x.CagriFirma == id && x.Durum == true).Count();
+            ViewBag.ca1 = cagrilarAktif;
             return PartialView(cagrilar);
+        }
+        public ActionResult LogOut()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon(); ;
+            return RedirectToAction("Index", "Login");
         }
     }
 }
