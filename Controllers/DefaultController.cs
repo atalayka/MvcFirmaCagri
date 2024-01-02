@@ -99,6 +99,9 @@ namespace MvcFirmaCagri.Controllers
             var mail = (string)Session["Mail"];
             var id = db.TblFirmalar.Where(x => x.Mail == mail).Select(y => y.ID).FirstOrDefault();
 
+            var fotograf = db.TblFirmalar.Where(x => x.Mail == mail).Select(y => y.Gorsel).FirstOrDefault();
+            ViewBag.f1 = fotograf;
+
             var toplamCagri = db.TblCagrilar.Where(x => x.CagriFirma == id).Count();
             ViewBag.c1 = toplamCagri;
 
@@ -114,6 +117,8 @@ namespace MvcFirmaCagri.Controllers
 
             var sektor = db.TblFirmalar.Where(x => x.ID == id).Select(y => y.Sektör).FirstOrDefault();
             ViewBag.c5 = sektor;
+
+
 
             return View();
         }
