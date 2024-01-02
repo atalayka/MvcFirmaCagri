@@ -578,6 +578,7 @@
     <Content Include="Views\Default\Partial2.cshtml" />
     <Content Include="Views\Default\GelenMesaj.cshtml" />
     <Content Include="Views\Default\GonderilenMesaj.cshtml" />
+    <Content Include="Views\Default\Partial3.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

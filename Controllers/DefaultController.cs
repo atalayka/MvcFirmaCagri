@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
+using System.Web.UI;
 using System.Web.UI.WebControls;
 using MvcFirmaCagri.Models.Entity;
 
@@ -119,7 +120,6 @@ namespace MvcFirmaCagri.Controllers
             ViewBag.c5 = sektor;
 
 
-
             return View();
         }
 
@@ -127,12 +127,14 @@ namespace MvcFirmaCagri.Controllers
         {
             //true is unreaded message; false is readed message
             var mail = (string)Session["Mail"];
-            var mesajlar = db.TblMesajlar.Where(x => x.Alici == mail && x.Durum == true).ToList();
+            var id = db.TblFirmalar.Where(x => x.Mail == mail).Select(y => y.ID).FirstOrDefault();
 
-            var mesajSayisi = db.TblMesajlar.Where(x => x.Alici == mail && x.Durum == true).Count();
+            var mesajlar = db.TblMesajlar.Where(x => x.Alici == id && x.Durum == true).ToList();
+
+            var mesajSayisi = db.TblMesajlar.Where(x => x.Alici == id && x.Durum == true).Count();
             ViewBag.m1 = mesajSayisi;
 
-
+          
             return PartialView(mesajlar);
         }
 
@@ -145,9 +147,6 @@ namespace MvcFirmaCagri.Controllers
             var cagrilar = db.TblCagrilar.Where(x => x.CagriFirma == id && x.Durum == true).ToList();
             var cagrilarAktif = db.TblCagrilar.Where(x => x.CagriFirma == id && x.Durum == true).Count();
             ViewBag.ca1 = cagrilarAktif;
-
-            var fotograf = db.TblFirmalar.Where(x => x.Mail == mail).Select(y => y.Gorsel).FirstOrDefault();
-            ViewBag.f1 = fotograf;
 
             return PartialView(cagrilar);
         }
@@ -166,5 +165,10 @@ namespace MvcFirmaCagri.Controllers
         {
             return View();
         }
+         public PartialViewResult Partial3()
+        {
+            return PartialView();
+        }
+
     }
 }
