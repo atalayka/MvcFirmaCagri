@@ -126,6 +126,8 @@ namespace MvcFirmaCagri.Controllers
 
             var mesajSayisi = db.TblMesajlar.Where(x => x.Alici == mail && x.Durum == true).Count();
             ViewBag.m1 = mesajSayisi;
+
+
             return PartialView(mesajlar);
         }
 
@@ -138,6 +140,10 @@ namespace MvcFirmaCagri.Controllers
             var cagrilar = db.TblCagrilar.Where(x => x.CagriFirma == id && x.Durum == true).ToList();
             var cagrilarAktif = db.TblCagrilar.Where(x => x.CagriFirma == id && x.Durum == true).Count();
             ViewBag.ca1 = cagrilarAktif;
+
+            var fotograf = db.TblFirmalar.Where(x => x.Mail == mail).Select(y => y.Gorsel).FirstOrDefault();
+            ViewBag.f1 = fotograf;
+
             return PartialView(cagrilar);
         }
         public ActionResult LogOut()

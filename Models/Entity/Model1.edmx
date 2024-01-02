@@ -65,6 +65,7 @@
           <Property Name="il" Type="nvarchar" MaxLength="20" />
           <Property Name="ilçe" Type="nvarchar" MaxLength="30" />
           <Property Name="Adres" Type="nvarchar" MaxLength="50" />
+          <Property Name="Gorsel" Type="nvarchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="TblGorevDetaylar">
           <Key>
@@ -426,6 +427,7 @@
           <Property Name="ilçe" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="Adres" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="TblCagrilar" Relationship="DbIsTakiipModel.FK_TblCagrilar_TblFirmalar" FromRole="TblFirmalar" ToRole="TblCagrilar" />
+          <Property Name="Gorsel" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
         </EntityType>
         <Association Name="FK_TblCagrilar_TblFirmalar">
           <End Type="DbIsTakiipModel.TblFirmalar" Role="TblFirmalar" Multiplicity="0..1" />
@@ -548,6 +550,7 @@
           <EntitySetMapping Name="TblFirmalar">
             <EntityTypeMapping TypeName="DbIsTakiipModel.TblFirmalar">
               <MappingFragment StoreEntitySet="TblFirmalar">
+                <ScalarProperty Name="Gorsel" ColumnName="Gorsel" />
                 <ScalarProperty Name="Adres" ColumnName="Adres" />
                 <ScalarProperty Name="ilçe" ColumnName="ilçe" />
                 <ScalarProperty Name="il" ColumnName="il" />

@@ -30,6 +30,7 @@ namespace MvcFirmaCagri.Models.Entity
         public string il { get; set; }
         public string ilçe { get; set; }
         public string Adres { get; set; }
+        public string Gorsel { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TblCagrilar> TblCagrilar { get; set; }
