@@ -100,12 +100,8 @@ namespace MvcFirmaCagri.Controllers
             var mail = (string)Session["Mail"];
             var id = db.TblFirmalar.Where(x => x.Mail == mail).Select(y => y.ID).FirstOrDefault();
 
-            var fotograf = db.TblFirmalar.Where(x => x.Mail == mail).Select(y => y.Gorsel).FirstOrDefault();
-            ViewBag.f1 = fotograf;
-
             var toplamCagri = db.TblCagrilar.Where(x => x.CagriFirma == id).Count();
             ViewBag.c1 = toplamCagri;
-
 
             var aktifCagri = db.TblCagrilar.Where(x => x.CagriFirma == id && x.Durum == true).Count();
             ViewBag.c2 = aktifCagri;
@@ -115,6 +111,12 @@ namespace MvcFirmaCagri.Controllers
 
             var yetkili = db.TblFirmalar.Where(x => x.ID == id).Select(y => y.Yetkili).FirstOrDefault();
             ViewBag.c4 = yetkili;
+
+            var firmaAd = db.TblFirmalar.Where(x => x.ID == id).Select(y => y.Ad).FirstOrDefault();
+            ViewBag.c6 = firmaAd;
+
+            var firmaGorsel = db.TblFirmalar.Where(x => x.ID == id).Select(y => y.Gorsel).FirstOrDefault();
+            ViewBag.c7 = firmaGorsel;
 
             var sektor = db.TblFirmalar.Where(x => x.ID == id).Select(y => y.Sektör).FirstOrDefault();
             ViewBag.c5 = sektor;
