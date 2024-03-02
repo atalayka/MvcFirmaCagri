@@ -1,4 +1,4 @@
-# MvcFirmaCagri
+# ServiceManagementPanel
 #Bu proje, küçük ve orta ölçekli işletmelerin iş akış ve planlama yeteneklerini geliştirmeyi, kontrolünü kolaylaştırmayı amaçlar
 ![Ekran görüntüsü 2024-01-07 224925](https://github.com/fullmetaljacked/MvcFirmaCagri/assets/58311022/9899ccca-b29f-4821-86d0-274316dce98a)
 ![Ekran görüntüsü 2024-01-07 225022](https://github.com/fullmetaljacked/MvcFirmaCagri/assets/58311022/193889d7-7012-4176-8328-4e7d5612351c)
